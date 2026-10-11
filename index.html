@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a2d">
+  <meta name="description" content="SpendWise helps you plan a ₹10,000 budget, simulate decisions, and survive the month with confidence.">
+  <title>SpendWise — Survive the Month</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="SpendWise home"><span class="brand-mark">S</span><span>spendwise<span class="brand-dot">.</span><small>YOUR MONEY, YOUR MOVE</small></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="overview"><span>◫</span> Overview</button>
+        <button class="nav-item" data-view="activity"><span>↗</span> Transactions</button>
+        <button class="nav-item" data-view="goals"><span>◎</span> Savings goals</button>
+        <button class="nav-item" data-view="simulator"><span>⌁</span> What-if lab <span class="nav-new">NEW</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mini-tip"><span class="tip-icon">✦</span><p><b>Little moves add up.</b><br>One mindful choice today can make tomorrow easier.</p></div>
+        <div class="profile"><div class="avatar">K</div><div><b>My money space</b><small>30-day challenge</small></div><span class="profile-more">•••</span></div>
+      </div>
+    </aside>
+
+    <main id="main" class="main-content">
+      <header class="topbar">
+        <div class="breadcrumb">Workspace <span>/</span> <b id="pageCrumb">Overview</b></div>
+        <div class="top-actions"><span class="period-pill"><span class="status-dot"></span> 30-day challenge</span><button id="resetBtn" class="icon-button" aria-label="Reset demo data" title="Reset demo data">↻</button><div class="avatar small-avatar" aria-label="Profile K">K</div></div>
+      </header>
+
+      <section class="page-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> SUNDAY, OCTOBER 11 · DAY 1 OF 30</div><h1 id="greeting">Make your money <span>make sense.</span></h1><p class="subheading">A little clarity goes a long way. Here's your money at a glance.</p></div>
+        <button class="primary-button" id="addExpenseTop"><span>＋</span> Add expense</button>
+      </section>
+
+      <section class="hero-grid" aria-label="Budget summary">
+        <article class="balance-card">
+          <div class="balance-top"><span class="card-kicker">AVAILABLE BALANCE</span><span class="live-pill"><span></span> LIVE BALANCE</span></div>
+          <div class="balance-value" id="balanceValue">₹10,000<span class="balance-decimal">.00</span></div>
+          <div class="balance-caption">of your ₹10,000 monthly budget</div>
+          <div class="balance-progress"><div id="balanceBar" style="width:100%"></div></div>
+          <div class="balance-foot"><span><i class="legend-dot mint"></i><b id="spentLabel">₹0</b> spent</span><span><i class="legend-dot white"></i><b id="committedLabel">₹2,000</b> committed</span></div>
+          <div class="card-orb orb-one"></div><div class="card-orb orb-two"></div>
+        </article>
+        <article class="metric-card daily-card"><div class="metric-head"><span class="metric-icon mint-icon">↗</span><span class="trend neutral" id="dailyTrend">PLAN AHEAD</span></div><div class="metric-label">Safe daily allowance</div><div class="metric-value" id="dailyAllowance">₹266</div><div class="metric-note">After commitments, over <b id="daysLeft">30 days</b></div><div class="sparkline" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="metric-card savings-card"><div class="metric-head"><span class="metric-icon purple-icon">◎</span><span class="trend positive" id="savingsTrend">ON YOUR WAY</span></div><div class="metric-label">Savings goal progress</div><div class="metric-value" id="savingsValue">₹0 <small>/ ₹2,000</small></div><div class="goal-track"><div id="goalBar" style="width:0%"></div></div><div class="metric-note"><b id="goalPercent">0%</b> of your goal saved</div></article>
+      </section>
+
+      <section class="middle-grid">
+        <article class="panel spending-panel">
+          <div class="panel-heading"><div><h2>Spending snapshot</h2><p>Where your money is going</p></div><button class="text-button" data-go="activity">View activity <span>↗</span></button></div>
+          <div class="spending-content"><div class="donut-wrap"><div class="donut" id="spendingDonut"><div class="donut-center"><b id="donutTotal">₹0</b><span>spent so far</span></div></div></div><div class="category-legend" id="categoryLegend"><div class="empty-state">Your spending breakdown will show up here.</div></div></div>
+          <div class="panel-footer"><span class="footer-dot"></span><span id="spendingInsight">Every rupee has a job. Give yours one.</span></div>
+        </article>
+        <article class="panel health-panel">
+          <div class="panel-heading"><div><h2>Financial pulse</h2><p>A quick check on your money health</p></div><span class="health-live">LIVE</span></div>
+          <div class="health-score-row"><div class="score-ring" id="scoreRing"><div><b id="healthScore">92</b><span>/100</span></div></div><div class="score-copy"><b id="healthLabel">Looking healthy</b><p id="healthDescription">Your plan has room to breathe. Keep it steady.</p></div></div>
+          <div class="health-metrics"><div><span class="health-metric-icon green">↘</span><div><small>Budget risk</small><b id="riskLabel">Low risk</b></div><span class="risk-indicator low" id="riskDot"></span></div><div><span class="health-metric-icon violet">◷</span><div><small>Projected month-end</small><b id="forecastValue">₹8,000</b></div><span class="forecast-arrow" id="forecastArrow">↗</span></div></div>
+          <div class="health-recommendation" id="healthRecommendation"><span>✦</span><p><b>Smart move</b><br>Your commitments are covered. Keep optional spending intentional.</p></div>
+        </article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel activity-panel">
+          <div class="panel-heading"><div><h2>Recent activity</h2><p>Your latest money moves</p></div><button class="text-button" data-go="activity">See all <span>↗</span></button></div>
+          <div class="transaction-list" id="recentTransactions"><div class="empty-transactions"><div>↗</div><b>No spending yet</b><span>Add your first expense to get started.</span></div></div>
+        </article>
+        <article class="panel commitments-panel">
+          <div class="panel-heading"><div><h2>Coming up</h2><p>Money already spoken for</p></div><button class="text-button" id="manageCommitments">Manage</button></div>
+          <div class="commitment-list" id="commitmentList"></div>
+          <div class="commitment-total"><span>Total commitments</span><b id="commitmentTotal">₹2,000</b></div>
+        </article>
+      </section>
+
+      <section class="panel simulator-preview" id="simulatorPreview">
+        <div class="sim-intro"><div class="sim-icon">⌁</div><div><span class="card-kicker">YOUR MONEY PLAYGROUND</span><h2>Think it through before you do it.</h2><p>Try a decision. See what it changes. No real money moves here.</p></div></div>
+        <div class="sim-action"><div><span class="sim-action-label">WHAT IF I BUY...</span><b>Those ₹1,500 sneakers?</b><small>See the impact on your month</small></div><button class="secondary-button" id="trySimulation">Run simulation <span>→</span></button></div>
+      </section>
+
+      <footer class="footer"><span>Made for real life, not perfect spreadsheets.</span><span>SpendWise <b>·</b> Demo mode <b>·</b> Data stays in this browser</span></footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="expenseDialog" class="modal">
+    <form id="expenseForm" method="dialog">
+      <div class="modal-heading"><div><span class="eyebrow">MONEY IN MOTION</span><h2>Add an expense</h2><p>Keep track of where it went.</p></div><button type="button" class="modal-close" data-close="expenseDialog" aria-label="Close">×</button></div>
+      <label for="expenseName">What did you spend on?</label><input id="expenseName" name="name" maxlength="60" placeholder="e.g. Lunch with friends" required>
+      <div class="form-row"><div><label for="expenseAmount">Amount (₹)</label><input id="expenseAmount" name="amount" type="number" min="1" max="100000" step="1" placeholder="250" required></div><div><label for="expenseCategory">Category</label><select id="expenseCategory" name="category"><option>Food</option><option>Travel</option><option>Shopping</option><option>Bills</option><option>Subscriptions</option><option>Health</option><option>Other</option></select></div></div>
+      <label class="checkbox-line"><input id="expenseEssential" type="checkbox"> Essential expense</label>
+      <p class="form-hint">This is a local demo. No bank account is connected.</p><button class="primary-button full-button" type="submit">Save expense <span>→</span></button>
+    </form>
+  </dialog>
+
+  <dialog id="simulatorDialog" class="modal sim-modal">
+    <form id="simulatorForm" method="dialog">
+      <div class="modal-heading"><div><span class="eyebrow">DECISION LAB · NO RISK</span><h2>Test a money move.</h2><p>Adjust the choice and preview its ripple effect.</p></div><button type="button" class="modal-close" data-close="simulatorDialog" aria-label="Close">×</button></div>
+      <label for="simType">Decision to explore</label><select id="simType"><option value="purchase">Buy something</option><option value="emergency">Unexpected expense</option><option value="subscription">Cancel a subscription</option><option value="income">Extra income</option></select>
+      <label for="simAmount">Amount (₹)</label><div class="range-value" id="simAmountLabel">₹1,500</div><input id="simAmount" type="range" min="100" max="4000" step="100" value="1500">
+      <label for="simDescription">What is it?</label><input id="simDescription" maxlength="60" value="New sneakers" placeholder="Describe your decision">
+      <div class="scenario-results"><div><small>Balance after decision</small><b id="simBalance">₹8,000</b></div><div><small>Daily allowance</small><b id="simDaily">₹266</b></div><div><small>Month-end forecast</small><b id="simForecast">₹6,500</b></div><div><small>Health impact</small><b id="simHealth">−8 points</b></div></div>
+      <div class="scenario-verdict" id="scenarioVerdict"><span>✦</span><p>Preview only — your real budget hasn't changed.</p></div>
+      <div class="modal-actions"><button type="button" class="secondary-button" data-close="simulatorDialog">Keep exploring</button><button class="primary-button" id="applySimulation" type="button">Apply decision <span>→</span></button></div>
+    </form>
+  </dialog>
+
+  <dialog id="commitmentsDialog" class="modal">
+    <form id="commitmentForm" method="dialog">
+      <div class="modal-heading"><div><span class="eyebrow">PLAN AHEAD</span><h2>Manage commitments</h2><p>Set aside money for expenses you know are coming.</p></div><button type="button" class="modal-close" data-close="commitmentsDialog" aria-label="Close">×</button></div>
+      <div id="editableCommitments" class="editable-commitments"></div>
+      <div class="form-row"><div><label for="commitmentName">New commitment</label><input id="commitmentName" maxlength="40" placeholder="e.g. Phone bill"></div><div><label for="commitmentAmount">Amount (₹)</label><input id="commitmentAmount" type="number" min="1" max="100000" placeholder="499"></div></div>
+      <button type="button" class="secondary-button full-button" id="addCommitment">＋ Add commitment</button>
+      <button type="submit" class="primary-button full-button">Save commitments</button>
+    </form>
+  </dialog>
+
+  <dialog id="goalsDialog" class="modal">
+    <form id="goalForm" method="dialog">
+      <div class="modal-heading"><div><span class="eyebrow">FUTURE YOU SAYS THANKS</span><h2>Your savings goal</h2><p>Give your money something to work toward.</p></div><button type="button" class="modal-close" data-close="goalsDialog" aria-label="Close">×</button></div>
+      <label for="goalNameInput">Goal name</label><input id="goalNameInput" maxlength="50" value="Little safety net" required>
+      <label for="goalTargetInput">Target amount (₹)</label><input id="goalTargetInput" type="number" min="100" max="1000000" step="100" value="2000" required>
+      <label for="goalSavedInput">Already saved toward this goal (₹)</label><input id="goalSavedInput" type="number" min="0" max="1000000" step="100" value="0" required>
+      <button class="primary-button full-button" type="submit">Update goal</button>
+    </form>
+  </dialog>
+  <script src="app.js" defer></script>
+</body>
+</html>
